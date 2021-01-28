@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+//Changes to rink where simulation takes place
+
 public class Button : Godot.Button
 {
     
