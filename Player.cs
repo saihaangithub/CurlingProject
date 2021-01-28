@@ -4,7 +4,7 @@ using System;
 
 public class Player : RigidBody2D
 {
-    public float MaxDistance = 1200;
+    public float MaxDistance = 3000;
     public float Impulse = 200;
     public float Life = 30;
 
@@ -29,6 +29,7 @@ public class Player : RigidBody2D
         if (distanceTravelled > this.MaxDistance)
             this.QueueFree();
         this.AppliedForce = (new Vector2(0,(float)(-1*this.LinearVelocity.y)));
+        this.AppliedForce = (new Vector2 ((float)(-2*this.LinearVelocity.y),0));
     }
 
     public void OnTimeToDie(){
