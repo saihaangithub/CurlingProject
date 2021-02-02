@@ -5,7 +5,9 @@ using System;
 public class Player : RigidBody2D
 {
     public float MaxDistance = 3000;
-    public float Impulse = 200;
+    public int Impulse = 200;
+
+    public int Impulsey=100;
     public float Life = 30;
 
     private Timer timer;
@@ -15,6 +17,7 @@ public class Player : RigidBody2D
     public void LaunchRock(){
         originalPosition = this.Position;
         this.ApplyCentralImpulse(new Vector2(this.Transform.x.Normalized() * Impulse));
+        //this.ApplyTorqueImpulse(new Vector2(this.Transform.x.Normalized() * Impulse,this.Transform.y.Normalized() * Impulse));
 
         timer = new Timer();
         this.AddChild(timer);
@@ -29,7 +32,7 @@ public class Player : RigidBody2D
         if (distanceTravelled > this.MaxDistance)
             this.QueueFree();
         this.AppliedForce = (new Vector2(0,(float)(-1*this.LinearVelocity.y)));
-        this.AppliedForce = (new Vector2 ((float)(-2*this.LinearVelocity.y),0));
+        //this.AppliedForce = (new Vector2 ((float)(-2*this.AngularVelocity),0));
     }
 
     public void OnTimeToDie(){
