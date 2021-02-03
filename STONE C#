@@ -1,0 +1,36 @@
+using Godot;
+using System;
+public class RigidBody2D : Godot.RigidBody2D
+{
+   public float TorForce = 20;
+   public float CentralImpulseX = 0;
+   public float CentralImpulseY = -100;
+   public float FrictionX = 0;
+   public float FrictionY = 50;
+ 
+    // 1Godot mass = 1000kg, 1pixel = 0.1m, 1pixel/s = 0.1m/s, 1Godot Force Unit = 100N, 1Godot Impulse = 100Kg*m/s
+ 
+    public override void _UnhandledInput(InputEvent @MouseEvent)
+    {
+        if (@MouseEvent is InputEventMouseButton mouseclick)
+        {
+            if (!mouseclick.Pressed && mouseclick.ButtonIndex ==(int)ButtonList.Right)
+            {
+                this.ApplyCentralImpulse(new Vector2(0,-250));
+                this.AddCentralForce(new Vector2(0,50));
+                this.ApplyTorqueImpulse(3);        
+            }
+        }
+    }
+    //Fix Friction so applied force stops.
+    public override void _Process(float delta)
+    {
+        if (Input.IsKeyPressed((int)KeyList.S))
+        {
+            this.AddCentralForce(new Vector2(0,0));
+        }
+ 
+    }
+    //Add Torque
+}
+ 
