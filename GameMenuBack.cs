@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class MenuButton : Button
+public class GameMenuBack : Button
 {
     // Declare member variables here. Examples:
     // private int a = 2;
@@ -13,9 +13,9 @@ public class MenuButton : Button
         
     }
 
-   // public override void _Pressed()
-    //{
-      //  var scene = GD.Load<PackedScene>("res://GameMenu.tscn");
-        //var instance = scene.();
-        //AddChild(instance);
+    public override void _Pressed()
+    {
+        GetTree().ChangeScene("res://Rink.tscn");
+    }
+
 }
